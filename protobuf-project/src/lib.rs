@@ -221,10 +221,10 @@ fn list_contacts(f: &mut fs::File, _redact: &str) {
         let contact = book.contacts.get(name).unwrap();
         // TODO if redact
         if _redact == "true" {
-            redact_private_info(&mut contact.clone());
+            let redacted_contact = redact_private_info(&mut contact.clone());
             println!("name: {}", name);
             println!("last_updated: {:?}", contact.last_updated.unwrap());
-            println!("{:#?}", contact);
+            println!("{:#?}", redacted_contact);
             println!("-----------------------");
         } else {
             println!("name: {}", name);
