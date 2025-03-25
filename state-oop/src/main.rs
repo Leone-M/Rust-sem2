@@ -14,9 +14,16 @@ fn main() {
     // щикарно
     assert_eq!("", post.content());
 
+    post.reject();
+    // попали обратно в драфт
+    post.add_text("I ate a salad for lunch today");
+    // получилось добавить проверим в конце
+    post.request_review();
+
     post.approve();
     // тут паничка
     post.approve();
     // тут нет -> значит всё чики пенсил
-    assert_eq!("I ate a salad for lunch today", post.content());
+    assert_eq!("I ate a salad for lunch todayI ate a salad for lunch today", post.content());
+    // снова добавился текст значит режект сработал как надо
 }
