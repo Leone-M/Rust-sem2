@@ -1,0 +1,55 @@
+services:
+  server:
+    container_name: server
+    build:
+      dockerfile: server.Dockerfile
+    ports:
+      - "7878:7878"
+    environment:
+      CON_ADDRESS: "0.0.0.0:7878"
+      DB_ADDRESS: "postgresql://ADMIN:ADMIN@db:5432/MY_DB?sslmode=disable"
+    networks:
+      - my_network
+    depends_on:
+      - db
+
+  # client:
+  #   container_name: client
+  #   build:
+  #     dockerfile: client.Dockerfile
+  #   environment:
+  #     CON_ADDRESS: "server:7878"
+  #   networks:
+  #     - my_network
+  #   depends_on:
+  #     - db
+
+  db:
+    image: postgres:14
+    environment:
+      - POSTGRES_USER=ADMIN
+      - POSTGRES_PASSWORD=ADMIN
+      - POSTGRES_DB=MY_DB
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    networks:
+      - my_network
+    
+  graphana:
+    image: grafana/grafana-oss
+    container_name: graphana
+    user: "0"
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana:/etc/grafana/provisioning:Z
+    networks:
+      - my_network
+    depends_on:
+      - db
+
+networks:
+  my_network:

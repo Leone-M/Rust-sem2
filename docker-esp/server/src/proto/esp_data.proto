@@ -1,0 +1,14 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+
+message event {
+  int32 event_id = 1;
+  google.protobuf.Timestamp read_time = 2;
+  message esp_data {
+    int32 device_id = 1;
+    int32 humidity = 2;
+    int32 temperature = 3;
+  }
+  esp_data event_data = 3;
+}
+

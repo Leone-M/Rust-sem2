@@ -1,0 +1,1 @@
+/home/HammerFish/Документы/Вуз/docker-esp/client/target/release/client: /home/HammerFish/Документы/Вуз/docker-esp/client/build.rs /home/HammerFish/Документы/Вуз/docker-esp/client/src/lib.rs /home/HammerFish/Документы/Вуз/docker-esp/client/src/main.rs /home/HammerFish/Документы/Вуз/docker-esp/client/target/release/build/client-a3e4da4059efea77/out/_.rs
