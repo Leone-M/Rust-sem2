@@ -5,7 +5,7 @@ use std::error::Error;
 use std::time;
 use prost;
 use std::env;
-use prost::{Message};
+use prost::Message;
 use prost_types;
 use rand::random_range;
 

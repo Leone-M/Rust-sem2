@@ -2,6 +2,7 @@ services:
   server:
     container_name: server
     build:
+      context: .
       dockerfile: server.Dockerfile
     ports:
       - "7878:7878"
