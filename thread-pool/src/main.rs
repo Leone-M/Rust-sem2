@@ -6,14 +6,21 @@ use thread_pool::ThreadPool;
 
 fn main() {
     let listener = TcpListener::bind("127.0.0.1:7878").unwrap();
-    let pool = ThreadPool::new(4);
+    let pool = ThreadPool::build(4);
 
-    for stream in listener.incoming().take(3) {
-        let stream = stream.unwrap();
-
-        pool.execute(|| {
-            handle_connection(stream);
-        });
+    match pool {
+        Ok(pool) => {
+            for stream in listener.incoming().take(3) {
+                let stream = stream.unwrap();
+        
+                pool.execute(|| {
+                    handle_connection(stream);
+                });
+            }
+        }
+        Err(e) => {
+            eprintln!("Ошибка создания thread-pool'а: {e:#>}");
+        }
     }
 }
 
