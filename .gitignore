@@ -1,2 +1,13 @@
 thread-pool/target/
 thread-pool/.idea/
+
+docker-esp/client/target/
+docker-esp/server/target/
+
+minigrep/target/
+
+rustling/target/
+
+state-oop/target/
+
+protobuf-project/target/
